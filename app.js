@@ -1,28 +1,23 @@
 const express = require("express");
-const mongoose = require("mongoose");
-const users = require("./routes/api/users");
-const posts = require("./routes/api/posts");
-const profiles = require("./routes/api/profiles");
+
+const connectDB = require("./config/db");
 
 const app = express();
 
-//db config
+//Connect database
+connectDB();
 
-const db = require("./config/keys").mongoURI;
+// init middleware
+app.use(express.json({ extended: false }));
 
-//connect to mongodb
-mongoose
-  .connect(db)
-  .then(() => console.log("mongoDB connected"))
-  .catch(err => console.log(err));
+// test route
+app.get("/", (req, res) => res.send("api running"));
 
-app.get("/", (req, res) => res.send("Hello"));
-
-//User Routes
-
-app.use("/api/users", users);
-app.use("/api/profiles", profiles);
-app.use("/api/posts", posts);
+// define routes
+app.use("/api/users", require("./routes/api/users"));
+app.use("/api/posts", require("./routes/api/posts"));
+app.use("/api/auth", require("./routes/api/auth"));
+app.use("/api/profiles", require("./routes/api/profiles"));
 
 const port = process.env.PORT || 5000;
 
