@@ -1,4 +1,6 @@
 {
   "mongoURI": "mongodb+srv://kosatun:1504@dev-connection-ktih1.mongodb.net/test?retryWrites=true",
-  "jwtSecret": "secret"
+  "jwtSecret": "secret",
+  "githubCliendId": "c41f9ec67f04f829144a",
+  "githubSecret": "3244c48eb23d5cfb4560d2486b100fd51e4b9c56"
 }
