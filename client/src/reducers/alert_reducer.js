@@ -4,7 +4,6 @@ const initialState = [];
 
 const alertReducer = (state = initialState, action) => {
   const { type, payload } = action;
-  Object.freeze(state);
 
   switch (type) {
     case SET_ALERT:
